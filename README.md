@@ -31,6 +31,12 @@ Codex:
 2. Install dependencies from `shared/requirements.txt`
 3. Restart Codex so it reloads available skills
 
+Repository-managed publish scripts:
+
+- Windows: `pwsh -File .\scripts\publish-to-codex.ps1 -SkillName <skill-name>`
+- macOS: `./scripts/publish-to-codex.sh --skill <skill-name>`
+- Details: `docs/publishing.md`
+
 Claude:
 
 1. Open the skill's `claude/CLAUDE.md`
