@@ -7,6 +7,8 @@ These scripts publish repository-managed skills into the live Codex skills direc
 
 The result is written to `~/.codex/skills/<skill-name>` on macOS and `%USERPROFILE%\.codex\skills\<skill-name>` on Windows.
 
+Skills may live directly under `skills/` or inside one category layer such as `skills/investing-cn/<skill-name>` or `skills/engineering/<skill-name>`.
+
 ## Windows
 
 Publish one skill:
@@ -54,8 +56,8 @@ Custom destination:
 - `codex/` adapter files are copied second
 - the target skill directory is replaced atomically via a temporary folder
 - `claude/` files are not published into the Codex runtime folder
+- the installed skill name is always the skill directory basename, regardless of category
 
 ## After Publishing
 
 Restart Codex so it reloads the updated skills.
-

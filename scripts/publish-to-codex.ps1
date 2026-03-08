@@ -71,6 +71,45 @@ function Publish-Skill {
     Write-Host "Published $skillName -> $targetDir"
 }
 
+function Get-SkillDirectories {
+    param([string]$SkillsRoot)
+    Get-ChildItem -Path $SkillsRoot -Directory -Recurse |
+        Where-Object {
+            (Test-Path (Join-Path $_.FullName "shared")) -and
+            (Test-Path (Join-Path $_.FullName "codex"))
+        } |
+        Sort-Object FullName
+}
+
+function Resolve-SkillDirectory {
+    param(
+        [string]$SkillsRoot,
+        [string]$RequestedSkill
+    )
+
+    $direct = Join-Path $SkillsRoot $RequestedSkill
+    if ((Test-Path (Join-Path $direct "shared")) -and (Test-Path (Join-Path $direct "codex"))) {
+        return (Get-Item $direct)
+    }
+
+    $matches = Get-ChildItem -Path $SkillsRoot -Directory -Recurse |
+        Where-Object { $_.Name -eq $RequestedSkill } |
+        Where-Object {
+            (Test-Path (Join-Path $_.FullName "shared")) -and
+            (Test-Path (Join-Path $_.FullName "codex"))
+        } |
+        Sort-Object FullName
+
+    if ($matches.Count -eq 1) {
+        return $matches[0]
+    }
+    if ($matches.Count -gt 1) {
+        throw "Multiple skills matched '$RequestedSkill'. Use a category-qualified path."
+    }
+
+    throw "Skill not found: $RequestedSkill"
+}
+
 $resolvedRepoRoot = Resolve-RepoRoot -ExplicitRoot $RepoRoot
 $skillsRoot = Join-Path $resolvedRepoRoot "skills"
 
@@ -89,13 +128,9 @@ if (-not $DestinationRoot) {
 Ensure-Directory -PathValue $DestinationRoot
 
 if ($All) {
-    $skillDirs = Get-ChildItem -Path $skillsRoot -Directory | Sort-Object Name
+    $skillDirs = Get-SkillDirectories -SkillsRoot $skillsRoot
 } elseif ($SkillName) {
-    $singleSkillDir = Join-Path $skillsRoot $SkillName
-    if (-not (Test-Path $singleSkillDir)) {
-        throw "Skill not found: $SkillName"
-    }
-    $skillDirs = @(Get-Item $singleSkillDir)
+    $skillDirs = @(Resolve-SkillDirectory -SkillsRoot $skillsRoot -RequestedSkill $SkillName)
 } else {
     throw "Provide -SkillName <name> or use -All"
 }

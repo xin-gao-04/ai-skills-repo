@@ -90,13 +90,46 @@ publish_skill() {
   echo "Published $skill -> $target_dir"
 }
 
+find_skill_dirs() {
+  find "$skills_root" -mindepth 1 -maxdepth 2 -type d | while IFS= read -r dir; do
+    if [[ -d "$dir/shared" && -d "$dir/codex" ]]; then
+      echo "$dir"
+    fi
+  done | sort
+}
+
+resolve_skill_dir() {
+  local requested="$1"
+  local direct="$skills_root/$requested"
+  if [[ -d "$direct/shared" && -d "$direct/codex" ]]; then
+    echo "$direct"
+    return 0
+  fi
+
+  local matches=()
+  while IFS= read -r match; do
+    matches+=("$match")
+  done < <(find "$skills_root" -mindepth 2 -maxdepth 2 -type d -name "$requested" | sort)
+
+  if [[ "${#matches[@]}" -eq 1 ]]; then
+    echo "${matches[0]}"
+    return 0
+  fi
+  if [[ "${#matches[@]}" -gt 1 ]]; then
+    echo "Multiple skills matched '$requested'; use a category-qualified path." >&2
+    exit 1
+  fi
+
+  echo "Skill not found: $requested" >&2
+  exit 1
+}
+
 if [[ "$publish_all" == "true" ]]; then
   while IFS= read -r skill_dir; do
     publish_skill "$skill_dir"
-  done < <(find "$skills_root" -mindepth 1 -maxdepth 1 -type d | sort)
+  done < <(find_skill_dirs)
 elif [[ -n "$skill_name" ]]; then
-  skill_dir="$skills_root/$skill_name"
-  [[ -d "$skill_dir" ]] || { echo "Skill not found: $skill_name" >&2; exit 1; }
+  skill_dir="$(resolve_skill_dir "$skill_name")"
   publish_skill "$skill_dir"
 else
   echo "Provide --skill <name> or --all" >&2

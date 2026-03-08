@@ -1,6 +1,6 @@
 # AI Skills Repo
 
-This repository stores self-built skills in a platform-neutral layout, with thin adapters for each agent platform.
+This repository stores self-built and curated skills in a platform-neutral layout, with thin adapters for each agent platform.
 
 ## Layout
 
@@ -11,13 +11,26 @@ This repository stores self-built skills in a platform-neutral layout, with thin
 
 ## Current Skills
 
+### `investing-cn`
+
 - `stock-technical-trade-advisor`
 - `macro-sector-rotation-agent`
 - `aluminum-investment-agent`
 
+### `engineering`
+
+- `cpp-pro`
+- `typescript-pro`
+- `api-designer`
+- `code-documenter`
+- `debugging-wizard`
+- `cli-developer`
+- `devops-engineer`
+- `rag-architect`
+
 ## Add A New Skill
 
-1. Create `skills/<skill-name>/shared/`
+1. Create `skills/<category>/<skill-name>/shared/`
 2. Put core scripts and assets in `shared/`
 3. Add a Codex adapter in `codex/`
 4. Add a Claude adapter in `claude/`
