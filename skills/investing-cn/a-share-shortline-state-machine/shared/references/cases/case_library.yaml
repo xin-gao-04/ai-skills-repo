@@ -1,0 +1,114 @@
+cases:
+  - case_id: case_dazhong_traffic_2024
+    name: 大众交通 2024 无人驾驶主升
+    setup: A
+    state_path: [S2, S3]
+    tags: [主线龙头, 题材催化, 持续上榜, 主升]
+    learnings:
+      - 主线被市场确认后，核心龙头会持续吸引注意力和流动性
+      - 连板与高换手并存时，更适合定义为主升而非纯一字情绪板
+    caution:
+      - 当题材过度拥挤时，后续会向 S4 演化
+
+  - case_id: case_szwh_2024_leadup
+    name: 深圳华强 2024 主升前段
+    setup: A
+    state_path: [S2]
+    tags: [主线龙头, 华为线, 高辨识度]
+    learnings:
+      - 主升前段的盈利来源是龙头确认后的持续承认
+      - 龙头高度领先且板块联动时，setup A 适配度高
+
+  - case_id: case_szwh_2024_crowding
+    name: 深圳华强 2024 拥挤阶段
+    setup: NONE
+    state_path: [S4]
+    tags: [拥挤, 散户化接棒, 高位风险]
+    learnings:
+      - 龙虎榜散户化接棒是拥挤信号，不是加分项
+      - 高位一致性过强往往意味着后手质量下降
+
+  - case_id: case_szwh_2024_fade
+    name: 深圳华强 2024 退潮确认
+    setup: NONE
+    state_path: [S5]
+    tags: [退潮确认, 高位共振下杀]
+    learnings:
+      - 主龙头高开低走跌停并带动高位股集体走弱时，优先视为退潮确认
+
+  - case_id: case_shenglong_2023_expansion
+    name: 圣龙股份 2023 总龙头带扩散
+    setup: B
+    state_path: [S3]
+    tags: [总龙头, 扩散, 板块成功]
+    learnings:
+      - 个股成功何时变成板块成功，是扩散状态识别的核心
+      - 做扩散期跟风时，必须筛掉杂毛补涨
+
+  - case_id: case_shenglong_2023_peak
+    name: 圣龙股份 2023 高潮
+    setup: NONE
+    state_path: [S4]
+    tags: [高潮, 高位一致, 风险抬升]
+    learnings:
+      - 高位全民关注不代表更安全，反而是兑现窗口
+
+  - case_id: case_jiuan_2022_trend
+    name: 九安医疗 2022 趋势容量滚动
+    setup: C
+    state_path: [S2, S3]
+    tags: [趋势容量, 持续上榜, 滚动博弈]
+    learnings:
+      - 游资并不只做打板，也做大成交容量趋势股
+      - 趋势容量更重视斜率、承接和反复上榜
+
+  - case_id: case_hainengda_2024_nov_cooldown
+    name: 海能达 2024 年 11 月退潮段
+    setup: NONE
+    state_path: [S0]
+    tags: [退潮, 高位补跌]
+    learnings:
+      - 高位人气股补跌时，优先定义为冰点或退潮观察
+
+  - case_id: case_hainengda_2024_nov_repair
+    name: 海能达 2024 年 11 月修复
+    setup: D
+    state_path: [S1]
+    tags: [修复, 前排, 高辨识度]
+    learnings:
+      - 退潮后只做第一批修复前排，不做普反
+
+  - case_id: case_shuangcheng_2024_repair
+    name: 双成药业 2024 同批修复样本
+    setup: D
+    state_path: [S1]
+    tags: [修复, 对照样本]
+    learnings:
+      - 同批修复中要比较谁是真正的最强前排
+
+  - case_id: case_hainengda_2024_secondwave
+    name: 海能达 2024 二次回流
+    setup: E
+    state_path: [S6]
+    tags: [二波, 高辨识度, 高风险]
+    learnings:
+      - 二波不是普遍现象，只属于极少数高辨识度核心
+    caution:
+      - 高统计溢价不等于低风险
+
+  - case_id: case_changshan_2024_secondwave
+    name: 常山北明 2024 二波回流
+    setup: E
+    state_path: [S6]
+    tags: [二波, 再次上榜, 高风险公告]
+    learnings:
+      - 高辨识度与高风险会同时存在
+      - 风险公告存在时应严格缩短持有周期
+
+  - case_id: case_tianlong_2023_reversal
+    name: 天龙股份 2023 天地板反转
+    setup: NONE
+    state_path: [S5]
+    tags: [天地板, 退潮警报]
+    learnings:
+      - 天地板是极强的退潮警报，不应继续用主升逻辑应对

@@ -1,0 +1,65 @@
+scoring:
+  total_score_formula: >
+    total = state_match + theme_quality + structure_quality + flow_quality - risk_penalty
+
+  buckets:
+    conditional_focus:
+      min: 80
+      max: 100
+      meaning: 结构优秀，但仍需人工确认，适合条件满足后重点跟踪
+    light_probe:
+      min: 65
+      max: 79
+      meaning: 可轻仓试错或重点观察
+    observe:
+      min: 50
+      max: 64
+      meaning: 结构一般，风险与机会并存，以观察为主
+    avoid:
+      min: 0
+      max: 49
+      meaning: 不建议出手
+
+  components:
+    state_match:
+      max: 25
+      rules:
+        - 市场状态与 setup 完全匹配: 22-25
+        - 基本匹配但有瑕疵: 15-21
+        - 勉强匹配: 8-14
+        - 明显不匹配: 0-7
+
+    theme_quality:
+      max: 20
+      rules:
+        - 催化清晰、主线明确、扩散健康: 16-20
+        - 有催化但主线不够集中: 10-15
+        - 仅概念沾边或热度衰减: 0-9
+
+    structure_quality:
+      max: 25
+      rules:
+        - 辨识度高、换手良好、回封质量强: 19-25
+        - 结构尚可但不够纯粹: 10-18
+        - 结构较差或虚强: 0-9
+
+    flow_quality:
+      max: 15
+      rules:
+        - 强资金主导且不散户化: 11-15
+        - 资金结构中性: 6-10
+        - 散户化明显或资金分歧大: 0-5
+
+    risk_penalty:
+      max: 30
+      rules:
+        - 累加各 kill switch 风险分
+        - 若 K3 触发，可直接判为 avoid
+
+  overrides:
+    - condition: K3 触发
+      action_bias: avoid
+    - condition: K1 + K2 同时触发
+      max_score: 69
+    - condition: S4 且 retail_cluster_present = true
+      max_score: 64

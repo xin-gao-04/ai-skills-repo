@@ -16,6 +16,7 @@ This repository stores self-built and curated skills in a platform-neutral layou
 - `stock-technical-trade-advisor`
 - `macro-sector-rotation-agent`
 - `aluminum-investment-agent`
+- `a-share-shortline-state-machine`
 
 ### `engineering`
 

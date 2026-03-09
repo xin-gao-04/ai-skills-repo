@@ -1,0 +1,161 @@
+states:
+  S0:
+    label: 退潮/冰点观察
+    definition: 高位人气股补跌，风险偏好快速收缩，旧主线失去持续性。
+    signals:
+      positive_for_state:
+        - 高位股连续跌停或A杀
+        - 最高连板下降
+        - 跌停家数上升
+        - 炸板率上升
+      trading_bias:
+        - 只观察第一批止跌修复前排
+        - 缩短持股周期
+        - 降低仓位
+    forbidden:
+      - 高位一致性追涨
+      - 将普通反抽误判为新周期
+    case_refs:
+      - case_hainengda_2024_nov_cooldown
+
+  S1:
+    label: 修复
+    definition: 退潮后，前期高辨识度核心重新获得承认，第一批修复前排出现。
+    signals:
+      positive_for_state:
+        - 跌停家数收缩
+        - 前期人气股重新涨停或强回封
+        - 修复股明显强于普通反弹股
+      trading_bias:
+        - 只做第一批修复前排
+        - 以试错仓为主
+    case_refs:
+      - case_hainengda_2024_nov_repair
+
+  S2:
+    label: 主升
+    definition: 题材被确认，龙头持续走强并形成赚钱效应。
+    signals:
+      positive_for_state:
+        - 催化清晰
+        - 龙头连续涨停或趋势加速
+        - 板块出现高质量助攻
+      trading_bias:
+        - 做主线龙头确认接力
+        - 做高辨识度次核心
+    case_refs:
+      - case_dazhong_traffic_2024
+      - case_szwh_2024_leadup
+
+  S3:
+    label: 扩散
+    definition: 龙头赚钱效应向板块和分支扩散，个股成功上升为板块成功。
+    signals:
+      positive_for_state:
+        - 同题材涨停数明显增加
+        - 市场封板率提升
+        - 分支方向与容量票出现共振
+      trading_bias:
+        - 做主线内分支核心
+        - 做板块扩散中的高辨识度跟风
+    case_refs:
+      - case_shenglong_2023_expansion
+
+  S4:
+    label: 高潮/拥挤
+    definition: 热度极高，后手质量下降，散户化接棒增强。
+    signals:
+      positive_for_state:
+        - 龙头高度极高
+        - 舆情热度过高
+        - 龙虎榜散户化
+        - 一致性预期过强
+      trading_bias:
+        - 兑现优先
+        - 只观察分歧是否转退潮
+    forbidden:
+      - 因知名席位同框而追高
+      - 在高位拥挤期扩大仓位
+    case_refs:
+      - case_szwh_2024_crowding
+      - case_shenglong_2023_peak
+
+  S5:
+    label: 退潮确认
+    definition: 主龙头和高位股共振走弱，旧主升结束。
+    signals:
+      positive_for_state:
+        - 主龙头跌停或高开低走跌停
+        - 高位股多只共振下杀
+        - 连板断层
+      trading_bias:
+        - 退出旧主线
+        - 只做新冰点观察
+    case_refs:
+      - case_szwh_2024_fade
+      - case_tianlong_2023_reversal
+
+  S6:
+    label: 二波/二次回流
+    definition: 极少数高辨识度核心在大波动后重新获得资金承认。
+    signals:
+      positive_for_state:
+        - 历史辨识度极高
+        - 再次上榜仍有短期溢价统计支撑
+        - 不是普通超跌反抽
+      trading_bias:
+        - 仅限已被反复验证的高辨识度核心
+        - 控制仓位和持有周期
+    case_refs:
+      - case_changshan_2024_secondwave
+      - case_hainengda_2024_secondwave
+
+transitions:
+  - from: S0
+    to: S1
+    conditions:
+      - 前期高位人气股不再连续跌停
+      - 第一批修复前排重新涨停或强回封
+      - 跌停家数明显收缩
+
+  - from: S1
+    to: S2
+    conditions:
+      - 修复前排连续获得承认
+      - 新主线题材清晰
+      - 龙头形成板块带动
+
+  - from: S2
+    to: S3
+    conditions:
+      - 龙头不再只是个股成功
+      - 同题材涨停数量明显增加
+      - 分支扩散与容量票共振
+
+  - from: S3
+    to: S4
+    conditions:
+      - 龙头高度极高
+      - 热度和拥挤度显著上升
+      - 龙虎榜散户化增强
+
+  - from: S4
+    to: S5
+    conditions:
+      - 龙头承接失败
+      - 高位股共振下杀
+      - 出现天地板或大面积跌停
+
+  - from: S5
+    to: S0
+    conditions:
+      - 旧主线全面失效
+      - 市场进入观望期
+      - 尚未出现明确修复前排
+
+  - from: S5
+    to: S6
+    conditions:
+      - 个股历史辨识度极高
+      - 再次上榜仍有统计溢价支撑
+      - 不属于普通反抽

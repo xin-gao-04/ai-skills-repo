@@ -1,0 +1,294 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "A股短线状态机输入",
+  "type": "object",
+  "required": [
+    "analysis_date",
+    "market",
+    "target"
+  ],
+  "properties": {
+    "analysis_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "market": {
+      "type": "object",
+      "required": [
+        "limit_up_count",
+        "limit_down_count",
+        "failed_limit_count",
+        "max_board_height",
+        "turnover_total"
+      ],
+      "properties": {
+        "index_snapshot": {
+          "type": "object",
+          "properties": {
+            "shanghai_pct": {
+              "type": "number"
+            },
+            "shenzhen_pct": {
+              "type": "number"
+            },
+            "chinext_pct": {
+              "type": "number"
+            },
+            "bse50_pct": {
+              "type": "number"
+            }
+          }
+        },
+        "limit_up_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "limit_down_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed_limit_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_board_height": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "board_distribution": {
+          "type": "object",
+          "properties": {
+            "mainboard_10cm": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "chinext_20cm": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "star_20cm": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "bse_30cm": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "turnover_total": {
+          "type": "number",
+          "minimum": 0
+        },
+        "main_theme_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "single_dominant_theme": {
+          "type": "boolean"
+        }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "catalyst": {
+          "type": "string"
+        },
+        "catalyst_date": {
+          "type": "string"
+        },
+        "heat_level": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "core_stock_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cross_sector_spread": {
+          "type": "boolean"
+        },
+        "index_resonance": {
+          "type": "boolean"
+        },
+        "high_level_divergence": {
+          "type": "boolean"
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": [
+        "code",
+        "name"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "exchange_segment": {
+          "type": "string",
+          "enum": [
+            "mainboard",
+            "chinext",
+            "star",
+            "bse",
+            "other"
+          ]
+        },
+        "market_cap_bucket": {
+          "type": "string",
+          "enum": [
+            "micro",
+            "small",
+            "mid",
+            "large",
+            "unknown"
+          ]
+        },
+        "float_cap_bucket": {
+          "type": "string",
+          "enum": [
+            "micro",
+            "small",
+            "mid",
+            "large",
+            "unknown"
+          ]
+        },
+        "concepts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "return_10d_pct": {
+          "type": "number"
+        },
+        "return_20d_pct": {
+          "type": "number"
+        },
+        "board_height": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "first_limit_date": {
+          "type": "string"
+        },
+        "turnover_ratio_pct": {
+          "type": "number",
+          "minimum": 0
+        },
+        "amplitude_pct": {
+          "type": "number",
+          "minimum": 0
+        },
+        "open_gap_pct": {
+          "type": "number"
+        },
+        "is_one_word_limit": {
+          "type": "boolean"
+        },
+        "first_limit_time": {
+          "type": "string"
+        },
+        "broken_limit_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reclose_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "seal_amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "trend_new_high": {
+          "type": "boolean"
+        }
+      }
+    },
+    "flow": {
+      "type": "object",
+      "properties": {
+        "entered_lhb_recently": {
+          "type": "boolean"
+        },
+        "lhb_role": {
+          "type": "string",
+          "enum": [
+            "buy",
+            "sell",
+            "both",
+            "unknown"
+          ]
+        },
+        "hot_money_present": {
+          "type": "boolean"
+        },
+        "institution_present": {
+          "type": "boolean"
+        },
+        "northbound_present": {
+          "type": "boolean"
+        },
+        "retail_cluster_present": {
+          "type": "boolean"
+        },
+        "multi_seat_cluster": {
+          "type": "boolean"
+        },
+        "seat_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "properties": {
+        "exchange_monitoring_flag": {
+          "type": "boolean"
+        },
+        "serious_abnormal_volatility": {
+          "type": "boolean"
+        },
+        "company_risk_notice": {
+          "type": "boolean"
+        },
+        "theme_denial_or_weak_fundamental_support": {
+          "type": "boolean"
+        },
+        "suspected_program_trading_abnormality": {
+          "type": "boolean"
+        },
+        "crowded_trade_signal": {
+          "type": "boolean"
+        },
+        "limit_down_chain_signal": {
+          "type": "boolean"
+        },
+        "sky_earth_or_earth_sky_pattern": {
+          "type": "boolean"
+        }
+      }
+    },
+    "manual_notes": {
+      "type": "string"
+    }
+  }
+}

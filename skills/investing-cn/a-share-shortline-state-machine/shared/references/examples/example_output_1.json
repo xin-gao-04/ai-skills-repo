@@ -1,0 +1,59 @@
+{
+  "market_state": {
+    "state": "S2",
+    "label": "主升",
+    "confidence": "medium",
+    "evidence": [
+      "主线题材集中且催化明确",
+      "最高连板维持在可交易区间",
+      "目标个股为高辨识度前排，板块存在高质量助攻"
+    ]
+  },
+  "setup_analysis": {
+    "setup_code": "A",
+    "setup_name": "主线龙头确认接力",
+    "fit_score": 84,
+    "positive_signals": [
+      "题材催化明确",
+      "竞价高开且非一字",
+      "板块扩散健康",
+      "无明显散户化接棒"
+    ],
+    "negative_signals": [
+      "已有一定涨幅，后续需防止快速进入拥挤阶段"
+    ]
+  },
+  "case_mapping": {
+    "most_similar_case": "case_dazhong_traffic_2024",
+    "similar_points": [
+      "题材催化明确",
+      "龙头辨识度高",
+      "处于主升前中段"
+    ],
+    "key_differences": [
+      "示例目标当前板位更低",
+      "案例中的市场整体热度更强"
+    ]
+  },
+  "score": {
+    "state_match": 23,
+    "theme_quality": 17,
+    "structure_quality": 22,
+    "flow_quality": 12,
+    "risk_penalty": 6,
+    "total": 68
+  },
+  "conclusion": {
+    "action_bias": "light_probe",
+    "summary": "更接近主升期的 setup A，可跟踪但不宜神化席位因素，后续重点观察是否快速进入拥挤阶段。",
+    "invalidation_conditions": [
+      "主线分歧明显扩大",
+      "目标个股回封质量明显下降",
+      "龙虎榜开始出现散户化接棒"
+    ],
+    "unknowns": [
+      "是否存在未披露的公司风险提示",
+      "次日竞价是否继续超预期"
+    ]
+  }
+}

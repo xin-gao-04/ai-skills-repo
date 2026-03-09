@@ -1,0 +1,105 @@
+setups:
+  A:
+    name: 主线龙头确认接力
+    valid_states: [S1, S2]
+    preconditions:
+      - 题材催化明确
+      - 龙头辨识度第一
+      - 连板高度领先或趋势最强
+      - 不是纯一字顶死后接最后一棒
+    positive_signals:
+      - 竞价超预期
+      - 首次高质量分歧后回封
+      - 板块内有高质量助攻
+      - 龙虎榜强资金仍在
+    negative_signals:
+      - 异动公告密集
+      - 散户席位接棒
+      - 封单虚胖
+      - 同题材争龙头导致分流
+    case_refs:
+      - case_dazhong_traffic_2024
+      - case_szwh_2024_leadup
+
+  B:
+    name: 总龙头带动下的核心跟风
+    valid_states: [S2, S3]
+    preconditions:
+      - 总龙头已明确
+      - 板块扩散已发生
+      - 跟风股在分支中辨识度领先
+      - 不是杂毛补涨
+    positive_signals:
+      - 分支龙头独立强于同类
+      - 与总龙头形成联动
+      - 封板时间与换手结构良好
+    negative_signals:
+      - 仅因题材沾边被动跟涨
+      - 无板块共振
+      - 龙头退潮而后排逆势硬拉
+    case_refs:
+      - case_shenglong_2023_expansion
+
+  C:
+    name: 趋势容量滚动
+    valid_states: [S2, S3]
+    preconditions:
+      - 成交容量足够
+      - 有产业或题材逻辑支撑
+      - 反复上榜且非纯情绪一字
+    positive_signals:
+      - 趋势新高
+      - 回踩承接强
+      - 机构与活跃资金共振
+    negative_signals:
+      - 趋势结构破坏
+      - 高位放量长阴
+      - 题材热度快速衰减
+    case_refs:
+      - case_jiuan_2022_trend
+
+  D:
+    name: 退潮后第一批修复
+    valid_states: [S0, S1]
+    preconditions:
+      - 已经历明确退潮
+      - 修复股属于前期高辨识度核心
+      - 同批修复中最强
+    positive_signals:
+      - 再次连板
+      - 回封坚决
+      - 跌停家数同步收缩
+    negative_signals:
+      - 普通超跌股跟风
+      - 只反弹一天无持续
+      - 龙头未修复而边角股先动
+    case_refs:
+      - case_hainengda_2024_nov_repair
+      - case_shuangcheng_2024_repair
+
+  E:
+    name: 高辨识度二波回流
+    valid_states: [S6]
+    preconditions:
+      - 历史辨识度极高
+      - 再上榜仍有短期溢价统计支撑
+      - 不属于普通反抽
+      - 已知高风险背景下仍获承认
+    positive_signals:
+      - 量能重新放大
+      - 龙头地位未被替代
+      - 历史股性支持
+    negative_signals:
+      - 监管风险过高
+      - 仅因情绪脉冲拉升
+      - 主线已切换
+    case_refs:
+      - case_changshan_2024_secondwave
+      - case_hainengda_2024_secondwave
+
+decision_rules:
+  no_setup:
+    trigger_conditions:
+      - 市场状态与目标 setup 不匹配
+      - kill switch 触发过多
+      - 目标不属于主线或高辨识度对象

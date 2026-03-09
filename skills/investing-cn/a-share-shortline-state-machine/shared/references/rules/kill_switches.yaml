@@ -1,0 +1,70 @@
+kill_switches:
+  - code: K1
+    name: 严重异常波动/异动公告风险
+    trigger:
+      - serious_abnormal_volatility = true
+      - company_risk_notice = true
+    effect:
+      - risk_penalty: 8
+      - cap_action_bias: observe
+      - note: 缩短持有周期，警惕监管与公告风险
+
+  - code: K2
+    name: 散户化接棒风险
+    trigger:
+      - retail_cluster_present = true
+    effect:
+      - risk_penalty: 7
+      - downgrade_setup_confidence: true
+      - note: 龙虎榜由强资金切换到散户化接棒，后手质量下降
+
+  - code: K3
+    name: 高位共振退潮风险
+    trigger:
+      - limit_down_chain_signal = true
+      - sky_earth_or_earth_sky_pattern = true
+    effect:
+      - risk_penalty: 10
+      - force_state: S5
+      - cap_action_bias: avoid
+      - note: 高位股共振下杀时，优先视为退潮确认
+
+  - code: K4
+    name: 程序化异常交易风险
+    trigger:
+      - suspected_program_trading_abnormality = true
+    effect:
+      - risk_penalty: 6
+      - note: 任何疑似异常申报、拉抬打压都只能视为负面风险
+
+  - code: K5
+    name: 题材脱离公司事实
+    trigger:
+      - theme_denial_or_weak_fundamental_support = true
+    effect:
+      - risk_penalty: 8
+      - cap_action_bias: observe
+      - note: 热点若无公司事实支撑，应压缩预期
+
+  - code: K6
+    name: 拥挤交易风险
+    trigger:
+      - crowded_trade_signal = true
+    effect:
+      - risk_penalty: 7
+      - note: 热度过高、标签过热、高位一致性过强时，不把拥挤当优势
+
+  - code: K7
+    name: 交易所监控风险
+    trigger:
+      - exchange_monitoring_flag = true
+    effect:
+      - risk_penalty: 8
+      - cap_action_bias: observe
+      - note: 交易所重点监控下，优先收缩而不是扩张
+
+application_order:
+  - 先识别状态
+  - 再识别 setup
+  - 再依次应用 kill switch
+  - 若 K3 触发，优先级最高

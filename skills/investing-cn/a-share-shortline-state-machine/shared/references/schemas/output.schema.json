@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "A股短线状态机输出",
+  "type": "object",
+  "required": [
+    "market_state",
+    "setup_analysis",
+    "score",
+    "conclusion"
+  ],
+  "properties": {
+    "market_state": {
+      "type": "object",
+      "required": [
+        "state",
+        "confidence",
+        "evidence"
+      ],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "S0",
+            "S1",
+            "S2",
+            "S3",
+            "S4",
+            "S5",
+            "S6"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "setup_analysis": {
+      "type": "object",
+      "properties": {
+        "setup_code": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "NONE"
+          ]
+        },
+        "setup_name": {
+          "type": "string"
+        },
+        "fit_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "positive_signals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "negative_signals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "case_mapping": {
+      "type": "object",
+      "properties": {
+        "most_similar_case": {
+          "type": "string"
+        },
+        "similar_points": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "key_differences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "score": {
+      "type": "object",
+      "required": [
+        "total"
+      ],
+      "properties": {
+        "state_match": {
+          "type": "number"
+        },
+        "theme_quality": {
+          "type": "number"
+        },
+        "structure_quality": {
+          "type": "number"
+        },
+        "flow_quality": {
+          "type": "number"
+        },
+        "risk_penalty": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        }
+      }
+    },
+    "conclusion": {
+      "type": "object",
+      "required": [
+        "action_bias",
+        "summary"
+      ],
+      "properties": {
+        "action_bias": {
+          "type": "string",
+          "enum": [
+            "avoid",
+            "observe",
+            "light_probe",
+            "conditional_focus"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "invalidation_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "analysis_date": "2026-03-09",
+  "market": {
+    "index_snapshot": {
+      "shanghai_pct": 0.4,
+      "shenzhen_pct": 0.9,
+      "chinext_pct": 1.3,
+      "bse50_pct": -0.2
+    },
+    "limit_up_count": 76,
+    "limit_down_count": 3,
+    "failed_limit_count": 18,
+    "max_board_height": 6,
+    "board_distribution": {
+      "mainboard_10cm": 58,
+      "chinext_20cm": 14,
+      "star_20cm": 2,
+      "bse_30cm": 2
+    },
+    "turnover_total": 13800,
+    "main_theme_count": 2,
+    "single_dominant_theme": true
+  },
+  "theme": {
+    "name": "机器人",
+    "catalyst": "政策催化叠加产业链订单预期",
+    "catalyst_date": "2026-03-07",
+    "heat_level": "high",
+    "core_stock_count": 4,
+    "cross_sector_spread": true,
+    "index_resonance": true,
+    "high_level_divergence": false
+  },
+  "target": {
+    "code": "000001",
+    "name": "示例龙头",
+    "exchange_segment": "mainboard",
+    "market_cap_bucket": "mid",
+    "float_cap_bucket": "mid",
+    "concepts": [
+      "机器人",
+      "自动化"
+    ],
+    "return_10d_pct": 38.5,
+    "return_20d_pct": 52.1,
+    "board_height": 4,
+    "first_limit_date": "2026-03-05",
+    "turnover_ratio_pct": 24.6,
+    "amplitude_pct": 9.8,
+    "open_gap_pct": 4.1,
+    "is_one_word_limit": false,
+    "first_limit_time": "09:43",
+    "broken_limit_count": 1,
+    "reclose_count": 1,
+    "seal_amount": 210000000,
+    "trend_new_high": true
+  },
+  "flow": {
+    "entered_lhb_recently": true,
+    "lhb_role": "buy",
+    "hot_money_present": true,
+    "institution_present": false,
+    "northbound_present": false,
+    "retail_cluster_present": false,
+    "multi_seat_cluster": true,
+    "seat_notes": [
+      "活跃营业部参与",
+      "无明显散户化接棒"
+    ]
+  },
+  "risk": {
+    "exchange_monitoring_flag": false,
+    "serious_abnormal_volatility": false,
+    "company_risk_notice": false,
+    "theme_denial_or_weak_fundamental_support": false,
+    "suspected_program_trading_abnormality": false,
+    "crowded_trade_signal": false,
+    "limit_down_chain_signal": false,
+    "sky_earth_or_earth_sky_pattern": false
+  },
+  "manual_notes": "用于演示主升阶段的 setup A 判定"
+}

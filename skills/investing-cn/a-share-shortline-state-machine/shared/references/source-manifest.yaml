@@ -1,0 +1,42 @@
+name: a_share_shortline_state_machine
+display_name: A股短线状态机与游资案例分析
+version: 4.0.0
+author: OpenAI ChatGPT
+language: zh-CN
+category: investment_research
+description: >
+  基于 A 股公开可核实信息，对短线市场环境进行状态识别、setup 分析、
+  风险拦截与案例映射的研究型 skill。
+objectives:
+  - 识别当前市场所处短线情绪状态
+  - 判断个股或题材属于何种 setup
+  - 识别退潮、拥挤、监管与散户化接棒风险
+  - 用历史案例做相似度映射，辅助复盘
+principles:
+  - 规则优先于故事
+  - 风控优先于买点
+  - 席位先验低权重
+  - 必须区分事实与推断
+entrypoints:
+  - SYSTEM_PROMPT.md
+  - templates/analysis_template.md
+schemas:
+  input: schemas/input.schema.json
+  output: schemas/output.schema.json
+rules:
+  state_machine: rules/state_machine.yaml
+  setups: rules/setup_rules.yaml
+  kill_switches: rules/kill_switches.yaml
+scoring:
+  weights: scoring/scoring_weights.yaml
+cases:
+  library: cases/case_library.yaml
+compatibility:
+  requires_web_verification: true
+  supports_manual_input: true
+  supports_future_data_integration: true
+limitations:
+  - 不能保证收益
+  - 不能替代持牌投资顾问
+  - 不能将席位标签视为身份确认
+  - 历史案例仅作相似性参考，不构成确定预测
