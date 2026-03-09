@@ -28,6 +28,7 @@ This repository stores self-built and curated skills in a platform-neutral layou
 - `cli-developer`
 - `devops-engineer`
 - `rag-architect`
+- `qt5-widgets-desktop-engineering`
 
 ## Add A New Skill
 

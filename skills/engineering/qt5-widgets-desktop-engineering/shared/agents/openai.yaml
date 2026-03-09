@@ -1,0 +1,3 @@
+display_name: Qt5 Widgets Desktop Engineering
+short_description: Build and review Qt 5.12 Qt Widgets desktop tools using maintainable C++ patterns.
+default_prompt: Use the Qt5 Widgets Desktop Engineering skill for this repository or task. Assume Qt 5.12 and a desktop-first Qt Widgets architecture unless the user explicitly says otherwise. State the architecture, build-system reality, ownership model, thread model, and deployment assumptions before proposing code.
